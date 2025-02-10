@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KennParaSayoTo</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffcccc;
+      text-align: center;
+    }
+    .container {
+      position: relative;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #b30000;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .yes {
+      background-color: #4caf50;
+      color: white;
+    }
+    .no {
+      background-color: #f44336;
+      color: white;
+      position: absolute;
+    }
+    .message {
+      font-size: 2rem;
+      color: #b30000;
+      margin-top: 20px;
+      display: none;
+    }
+    .yes.grow {
+      transform: scale(2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gago ka ba?</h1>
+    <button class="yes">Yes</button>
+    <button class="no">No</button>
+    <p class="message">Mabuti alam mo!</p>
+  </div>
+
+  <script>
+    const yesButton = document.querySelector('.yes');
+    const noButton = document.querySelector('.no');
+    const message = document.querySelector('.message');
+
+    let noClickCount = 0;
+
+    yesButton.addEventListener('click', () => {
+      message.style.display = 'block';
+      noButton.style.display = 'none';
+      yesButton.classList.add('grow');
+    });
+
+    noButton.addEventListener('click', () => {
+      noClickCount++;
+      if (noClickCount >= 10) {
+        noButton.style.display = 'none';
+        yesButton.classList.add('grow');
+      } else {
+        // Move the No button to a random position
+        const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+        const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+        noButton.style.transform = `translate(${x}px, ${y}px)`;
+      }
+    });
+  </script>
+</body>
+</html>
